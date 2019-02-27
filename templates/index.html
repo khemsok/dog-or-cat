@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dog or Cat</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet"></head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
 
 <style>
     body{
@@ -73,13 +76,29 @@ h1{
 
 <body>
     <h1>CAT <span>OR</span> DOG</h1>
-    <form action="{{url_for('handle_data')}}" method = 'post' enctype ='multipart/form-data'>
-        <input type="file" name = 'file' id = 'file' class = 'inputfile' accept = 'image/*' multiple>
-        <label id = 'lab' for="file">Choose a file</label>
-        <button style = 'display: block;'>Submit</button>
+    <form action="{{url_for('handle_data')}}" method='post' enctype='multipart/form-data'>
+        <input onchange="readURL(this);" type="file" name='file' id='file' class='inputfile' accept='image/*' multiple>
+        <label id='lab' for="file">Choose a file</label>
+        <img style = "display: block; margin: 0 auto;" id="blah" src="#" alt="">
+        <button style='display: block; margin-top: 20px;'>Submit</button>
     </form>
-    <img src="./images/test.jpg" alt="">
-    <h2 style = 'text-align: center'>{{prediction}}</h2>
+    <h2 style='text-align: center'>{{prediction}}</h2>
 </body>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
 </html>
