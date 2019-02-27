@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dog or Cat</title>
+</head>
+
+<body>
+    <form action="{{url_for('handle_data')}}" method = 'post' enctype ='multipart/form-data'>
+        <input type="file" name = 'file' accept = 'image/*' multiple>
+        <button>Submit</button>
+    </form>
+    <img src="" alt="">
+
+    <h1>{{prediction}}</h1>
+</body>
+
+</html>
